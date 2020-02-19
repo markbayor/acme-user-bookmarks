@@ -115,8 +115,10 @@
                       history={history}
                       onClick={function() {
                         if (bookmarks.filter(bm => bm.category === bookmark.category).length === 1 && bookmarks.length > 0) {
-                          const firstCat = bookmarks[0].category.toUpperCase();
-                          history.push(`/${firstCat}`);
+                          const firstCat = bookmarks.map(bm => bm)[0].category.toUpperCase();
+                          const secondCat = bookmarks.map(bm => bm)[1].category.toUpperCase();
+                          if (bookmarks[0].category.toUpperCase().includes(firstCat)) history.push(`/${secondCat}`);
+                          else history.push(`/${firstCat}`);
                         }
                         return destroy(bookmark);
                       }}
